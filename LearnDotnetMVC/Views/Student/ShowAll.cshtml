@@ -1,0 +1,22 @@
+﻿<!--This make our view able to display the data passed to it from the controller -->
+<!--Strong type view -->
+@model List<Student>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>ImageUrl</th>
+        <th>show</th>
+    </tr>
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td>@student.Id</td>
+            <td>@student.Name</td>
+            <td>
+                <img src="/images/@student.ImageUrl" alt="@student.Name" width="50" height="50" />
+            </td>
+            <td><a href="/Student/ShowStudentById/@student.Id">Show</a></td>
+        </tr>
+    }
+</table>

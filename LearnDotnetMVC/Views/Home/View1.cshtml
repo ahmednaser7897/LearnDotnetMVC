@@ -1,0 +1,45 @@
+﻿<h1>hello from View1</h1>
+<!-- To add css use style taginside <style> </style> tag -->
+<style>
+    h1 {
+        color: red;
+    }
+</style>
+
+<!-- To add javascript use script taginside <script> </script> tag -->
+<script>
+    console.log("hello from View1");
+</script>
+
+<!-- To add C# code we use Razor Engin's syntax -->
+
+<!-- 1-Block Elements -->
+@{
+    //this is C# code
+    int x = 10;
+    int y = x + 5;
+}
+
+<!-- 2-Inline Statements -->
+<h1>x is @x</h1>
+<p>y is @y</p>
+
+<!-- 3-Conditional Statements -->
+
+@if (x > 5)
+{
+    <p>x is greater than 5</p>
+    <h1>x = @x</h1>
+}
+else
+{
+    <p>x is less than or equal to 5</p>
+    <h1>x = @x</h1>
+}
+
+<!-- 4-Iteration Elements -->
+@for (int i = 0; i < 10; i++)
+{
+    <p>i = @i</p>
+}
+

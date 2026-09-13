@@ -1,0 +1,14 @@
+﻿@model Student?
+@if (Model != null)
+{
+    <div>@Model.Id</div>
+    <div>@Model.Name</div>
+    <!-- @Model.ImageUrl -->
+    <!-- /images/@Model.ImageUrl is mapped to the wwwroot/images folder -->
+    <div><img src="/images/@Model.ImageUrl" alt="@Model.Name" width="100" height="100" /></div>
+    <!-- http://localhost:5190/images/1.png -->
+}
+else
+{
+    <p>Student not found</p>
+}
