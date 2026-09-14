@@ -1,0 +1,74 @@
+@model Employee
+
+@{
+    ViewBag.Title = "Employee ViewBag Details";
+}
+<h1>@ViewBag.Title</h1>
+
+<h2>Data from ViewBag</h2>
+@if (ViewBag.msg != null)
+{
+    <p>@ViewBag.msg.</p>
+}
+
+@if (ViewBag.temp != null)
+{
+    <p>Temperature: @ViewBag.temp.</p>
+    <p>Temperature - 10: @(ViewBag.temp - 10)</p>
+}
+@if (ViewBag.branches != null)
+{
+    <!--this will print the type -->
+    <p>branches: @ViewBag.branches</p>
+    <!--so becouse branches is a list so we need to loop over it to print each element -->
+    <!--we use as to cast it to list-->
+    <ul>
+        @foreach (var branch in ViewBag.branches)
+        {
+            <li>@branch</li>
+        }
+    </ul>
+}
+
+
+<!--we use data from model object it self-->
+<h2>Data from ViewBag.Model</h2>
+@if (ViewBag.Model != null)
+{
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@ViewBag.Model.Id</dd>
+
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@ViewBag.Model.Name</dd>
+
+        <dt class="col-sm-2">Salary</dt>
+        <dd class="col-sm-10">@ViewBag.Model.Salary</dd>
+    </dl>
+}
+else
+{
+    <p>No employee data available.</p>
+}
+
+
+<h2>Data from Model</h2>
+<!--we use data from model object it self-->
+@if (Model != null)
+{
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">Salary</dt>
+        <dd class="col-sm-10">@Model.Salary</dd>
+    </dl>
+}
+else
+{
+    <p>No employee data available.</p>
+}
+

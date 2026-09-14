@@ -1,0 +1,57 @@
+<!-- we can use import here-->
+<!-- or add it to _ViewImports.cshtml file to be available in all views-->
+@* @using DotnetMVCProject.ViewModel *@
+@model EmployeeDataViewModel
+
+@{
+    ViewBag.Title = "Employee ViewModel Details";
+}
+<h1 style="color: @(Model.Color)">@ViewBag.Title</h1>
+
+<h2>Data from ViewModel</h2>
+@if (Model.Message != null)
+{
+    <p>@Model.Message.</p>
+}
+
+
+<p>Temperature: @Model.Temperature.</p>
+<p>Temperature - 10: @(Model.Temperature - 10)</p>
+
+@if (Model.Branches != null)
+{
+    <!--this will print the type -->
+    <p>branches: @Model.Branches</p>
+    <!--so becouse branches is a list so we need to loop over it to print each element -->
+    <!--we use as to cast it to list-->
+    <ul>
+        @foreach (var branch in Model.Branches)
+        {
+            <li>@branch</li>
+        }
+    </ul>
+}
+
+@if (Model != null)
+{
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@Model.Employee.Id</dd>
+
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Employee.Name</dd>
+
+        <dt class="col-sm-2">Salary</dt>
+        <dd class="col-sm-10">@Model.Employee.Salary</dd>
+
+        <dt class="col-sm-2">Department</dt>
+        <dd class="col-sm-10">@Model.DeptName</dd>
+    </dl>
+}
+else
+{
+    <p>No employee data available.</p>
+}
+
+
+

@@ -1,0 +1,20 @@
+@model List<Department>
+@{
+    ViewData["Title"] = "Departments";
+}
+<h1>Departments</h1>
+
+<ul>
+@if (Model != null)
+{
+    foreach (var dept in Model)
+    {
+        <li>@dept.Name</li>
+    }
+}
+else
+{
+    <li>No departments available.</li>
+}
+
+</ul>
