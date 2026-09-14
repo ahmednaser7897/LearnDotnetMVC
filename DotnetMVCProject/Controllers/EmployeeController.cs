@@ -98,6 +98,69 @@ namespace DotnetMVCProject.Controllers
 
 
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Employee? employee = context.Employees
+            .Include(e => e.Department)
+            .FirstOrDefault(e => e.Id == id);
+            if (employee != null)
+            {
+                EmpWithDeptViewModelcs viewModel = new()
+                {
+                    Employee = employee,
+                    Departments = context.Departments.ToList()
+                };
+                return View("Edit", viewModel);
+            }
+            else
+            {
+                return NotFound($"Employee with id {id} is not found");
+            }
+        }
+        [HttpPost]
+        public IActionResult SaveEdit(Employee em)
+        {
+            if (em.Name == null || em.Salary <= 0 || em.JopTitle == null || em.Address == null)
+            {
+                EmpWithDeptViewModelcs viewModel = new()
+                {
+                    Employee = em,
+                    Departments = context.Departments.ToList()
+                };
+                return View("Edit", viewModel);
+            }
+            else
+            {
+                Employee? employee = context.Employees
+                .FirstOrDefault(e => e.Id == em.Id);
+                if (employee != null)
+                {
+                    employee.Name = em.Name;
+                    employee.Salary = em.Salary;
+                    employee.JopTitle = em.JopTitle;
+                    employee.Address = em.Address;
+                    employee.DepartmentId = em.DepartmentId; context.Update(employee);
+                    context.SaveChanges();
+                    return RedirectToAction("GetEmployeesOfDepartment", employee.DepartmentId);
+                }
+                else
+                {
+                    return NotFound($"Employee with id {em.Id} is not found");
+                }
+
+            }
+
+        }
+        public IActionResult GetEmployeesOfDepartment(int id)
+        {
+            List<Employee> employees = context.Departments
+            .Include(e => e.Employees)
+            .FirstOrDefault(e => e.Id == id)?.Employees ?? [];
+            return View("GetEmployeesOfDepartment", employees);
+        }
 
     }
 }
+
+

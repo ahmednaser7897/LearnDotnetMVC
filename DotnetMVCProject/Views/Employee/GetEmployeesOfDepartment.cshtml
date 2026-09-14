@@ -1,0 +1,40 @@
+@model List<Employee>
+@{
+    ViewData["Title"] = "Employees Of Department";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Welcome to the GetEmployeesOfDepartment page!</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Job Title</th>
+            <th>Image URL</th>
+            <th>Address</th>
+            <th>Department ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var emp in Model)
+            {
+                <tr>
+                    <td>@emp.Id</td>
+                    <td>@emp.Name</td>
+                    <td>@emp.Salary</td>
+                    <td>@emp.JopTitle</td>
+                    <td>@emp.ImageUrl</td>
+                    <td>@emp.Address</td>
+                    <td>@emp.DepartmentId</td>
+                    <td><a href="/Employee/Edit?id=@emp.Id" class="btn btn-primary">Edit Employee</a>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>

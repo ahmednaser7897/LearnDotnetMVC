@@ -3,18 +3,33 @@
     ViewData["Title"] = "Departments";
 }
 <h1>Departments</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>ManagerName</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var dept in Model)
+            {
+                <tr key="dept.id">
+                    <td>@dept.Id</td>
+                    <td>@dept.Name</td>
+                    <td>@dept.ManagerName</td>
+                    <td><a href="/Employee/GetEmployeesOfDepartment?id=@dept.Id" class="btn btn-primary">Show Employees</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <li>No departments available.</li>
+        }
 
-<ul>
-@if (Model != null)
-{
-    foreach (var dept in Model)
-    {
-        <li>@dept.Name</li>
-    }
-}
-else
-{
-    <li>No departments available.</li>
-}
 
-</ul>
+    </tbody>
+    <a href="/Department/Add" class="btn btn-primary">Add New Department</a>

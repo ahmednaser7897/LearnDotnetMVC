@@ -1,7 +1,7 @@
-using DotnetMVCProject.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using DotnetMVCProject.Models;
 using DotnetMVCProject.Models.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMVCProject.Controllers
 {
@@ -9,83 +9,9 @@ namespace DotnetMVCProject.Controllers
     {
         public IActionResult Index()
         {
-            // AppDbContext context = new AppDbContext();
-            // if (!context.Departments.Any())
-            // {
-            //     context.Departments.AddRange(
-            //         new Department()
-            //         {
-            //             Name = "CS",
-            //             ManagerName = "Ahmed",
-            //             Employees =
-            //             [
-            //                 new Employee()
-            //         {
-            //             Name = "John",
-            //             Salary = 1000,
-            //             Address = "123 Main St",
-            //             ImageUrl = "2.png",
-            //             JopTitle = "BackEnd Developer",
-            //         },
-            //         new Employee()
-            //         {
-            //             Name = "Ahmed",
-            //             Salary = 1500,
-            //             Address = "456 Second St",
-            //             ImageUrl = "1.png",
-            //             JopTitle = "FrontEnd Developer",
-            //         },
-            //         new Employee()
-            //         {
-            //             Name = "Sara",
-            //             Salary = 1200,
-            //             Address = "789 Third St",
-            //             ImageUrl = "3.png",
-            //             JopTitle = "BackEnd Developer",
-            //         }
-            //             ]
-            //         },
-
-            //         new Department()
-            //         {
-            //             Name = "IT",
-            //             ManagerName = "Ali",
-            //             Employees =
-            //             [
-            //                 new Employee()
-            //         {
-            //             Name = "Omar",
-            //             Salary = 1300,
-            //             Address = "101 Fourth St",
-            //             ImageUrl = "4.png",
-            //             JopTitle = "Backend Developer",
-            //         },
-            //         new Employee()
-            //         {
-            //             Name = "Mona",
-            //             Salary = 1600,
-            //             Address = "202 Fifth St",
-            //             ImageUrl = "5.png",
-            //             JopTitle = "Frontend Developer",
-            //         },
-            //         new Employee()
-            //         {
-            //             Name = "Youssef",
-            //             Salary = 1400,
-            //             Address = "303 Sixth St",
-            //             ImageUrl = "6.png",
-            //             JopTitle = "DevOps Engineer",
-            //         }
-            //             ]
-            //         }
-            //     );
-
-            //     context.SaveChanges();
-            // }
-
+            AppDbContext context = new AppDbContext();
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
@@ -98,3 +24,57 @@ namespace DotnetMVCProject.Controllers
         }
     }
 }
+/*
+-- Departments
+INSERT INTO Departments (Name, ManagerName)
+VALUES
+('CS', 'Ahmed'),
+('IT', 'Ali'),
+('HR', 'Hassan'),
+('Finance', 'Mahmoud');
+
+
+-- Employees
+INSERT INTO Employees
+    (Name, Salary, Address, ImageUrl, JopTitle, DepartmentId)
+VALUES
+-- CS
+('John', 1000, '123 Main St', '2.png', 'BackEnd Developer',
+    (SELECT Id FROM Departments WHERE Name = 'CS')),
+
+('Ahmed', 1500, '456 Second St', '1.png', 'FrontEnd Developer',
+    (SELECT Id FROM Departments WHERE Name = 'CS')),
+
+('Sara', 1200, '789 Third St', '3.png', 'BackEnd Developer',
+    (SELECT Id FROM Departments WHERE Name = 'CS')),
+
+-- IT
+('Omar', 1300, '101 Fourth St', '4.png', 'Backend Developer',
+    (SELECT Id FROM Departments WHERE Name = 'IT')),
+
+('Mona', 1600, '202 Fifth St', '5.png', 'Frontend Developer',
+    (SELECT Id FROM Departments WHERE Name = 'IT')),
+
+('Youssef', 1400, '303 Sixth St', '6.png', 'DevOps Engineer',
+    (SELECT Id FROM Departments WHERE Name = 'IT')),
+
+-- HR
+('Khaled', 1100, '404 Seventh St', '7.png', 'HR Specialist',
+    (SELECT Id FROM Departments WHERE Name = 'HR')),
+
+('Nour', 1250, '505 Eighth St', '8.png', 'Recruiter',
+    (SELECT Id FROM Departments WHERE Name = 'HR')),
+
+('Mai', 1350, '606 Ninth St', '9.png', 'HR Manager',
+    (SELECT Id FROM Departments WHERE Name = 'HR')),
+
+-- Finance
+('Mostafa', 1800, '707 Tenth St', '10.png', 'Accountant',
+    (SELECT Id FROM Departments WHERE Name = 'Finance')),
+
+('Dina', 2000, '808 Eleventh St', '11.png', 'Financial Analyst',
+    (SELECT Id FROM Departments WHERE Name = 'Finance')),
+
+('Karim', 2200, '909 Twelfth St', '12.png', 'Finance Manager',
+    (SELECT Id FROM Departments WHERE Name = 'Finance'));
+*/
