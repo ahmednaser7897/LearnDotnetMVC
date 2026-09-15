@@ -1,0 +1,42 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace DotnetMVCProject.Models.Data.Config;
+
+public class InstructorConfiguration : IEntityTypeConfiguration<Instructor>
+{
+    public void Configure(EntityTypeBuilder<Instructor> builder)
+    {
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.Id)
+            .UseIdentityColumn(0, 1);
+
+        builder.Property(x => x.Name)
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(255)
+            .IsRequired();
+
+        builder.Property(x => x.ImageUrl)
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(500);
+
+        builder.Property(x => x.Salary)
+            .IsRequired();
+
+        builder.Property(x => x.Address)
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(255)
+            .IsRequired();
+
+        builder.HasOne(x => x.Department)
+            .WithMany(x => x.Instructors)
+            .HasForeignKey(x => x.DepartmentId);
+
+        builder.HasOne(x => x.Course)
+            .WithMany(x => x.Instructors)
+            .HasForeignKey(x => x.CourseId);
+
+        builder.ToTable("Instructors");
+    }
+}
