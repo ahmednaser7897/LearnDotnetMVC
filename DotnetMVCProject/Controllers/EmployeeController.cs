@@ -142,7 +142,7 @@ namespace DotnetMVCProject.Controllers
                     employee.Address = em.Address;
                     employee.DepartmentId = em.DepartmentId; context.Update(employee);
                     context.SaveChanges();
-                    return RedirectToAction("GetEmployeesOfDepartment", employee.DepartmentId);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -152,12 +152,46 @@ namespace DotnetMVCProject.Controllers
             }
 
         }
-        public IActionResult GetEmployeesOfDepartment(int id)
+        public IActionResult Add()
         {
-            List<Employee> employees = context.Departments
-            .Include(e => e.Employees)
-            .FirstOrDefault(e => e.Id == id)?.Employees ?? [];
-            return View("GetEmployeesOfDepartment", employees);
+            EmpWithDeptViewModelcs viewModel = new()
+            {
+                Employee = new Employee { },
+                Departments = context.Departments.ToList()
+            };
+            return View("Add", viewModel);
+        }
+        [HttpPost]
+        public IActionResult SaveAdd(Employee em)
+        {
+
+
+            //if (em.Name == null || em.Salary <= 0 || em.JopTitle == null || em.Address == null)
+            //ModelState is a dictionary that contains the validation errors
+            //so this checks if all constrains in the model are valid
+            if (!ModelState.IsValid)
+            {
+                Console.WriteLine("1-" + em);
+                EmpWithDeptViewModelcs viewModel = new()
+                {
+                    Employee = em,
+                    Departments = context.Departments.ToList()
+                };
+                return View("Add", viewModel);
+            }
+            else
+            {
+                Console.WriteLine("2-" + em);
+                context.Employees.Add(em);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        public IActionResult Index()
+        {
+            return View("Index", context.Employees.Include(e => e.Department).ToList());
         }
 
     }

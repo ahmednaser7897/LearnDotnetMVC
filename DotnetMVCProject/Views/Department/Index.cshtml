@@ -20,8 +20,6 @@
                     <td>@dept.Id</td>
                     <td>@dept.Name</td>
                     <td>@dept.ManagerName</td>
-                    <td><a href="/Employee/GetEmployeesOfDepartment?id=@dept.Id" class="btn btn-primary">Show Employees</a>
-                    </td>
                 </tr>
             }
         }
@@ -33,3 +31,5 @@
 
     </tbody>
     <a href="/Department/Add" class="btn btn-primary">Add New Department</a>
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+        <a href="/Home/Index" class="btn btn-primary">Back To Home</a>

@@ -1,0 +1,98 @@
+@using System.Drawing
+@model List<Instructor>
+@*
+in pravias code we were using native html code
+we can use Pure C# Html Helper
+it has 2 ways to achieve the same
+1. @Html.TextBoxFor() -> Strongly type it takes lambda expresion to bind model property 
+2. @Html.TextBox()   -> Loosely(weakly) typed (it takes string to bind model property ) 
+//------------------------------------------------------
+Common HTML Helpers
+@Html.TextBoxFor()
+@Html.TextBox()
+@Html.RadioButtonFor()
+@Html.RadioButton()
+@Html.CheckBoxFor()
+@Html.CheckBox()
+@Html.DropDownListFor()
+@Html.DropDownList()
+@Html.TextAreaFor()
+@Html.TextArea()
+@Html.BeginForm()
+@Html.EndForm()
+@Html.BeginRouteForm()
+@Html.EndRouteForm()
+@Html.BeginCollectionForm()
+@Html.EndCollectionForm()
+//------------------------------------------------------
+//we also can use Mix server side attributes and HTML attributes
+// we need to use @ symbol before the @ symbol
+//we can write our own html helpers too 
+//Example @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @style = "color:red" })
+*@
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background: #f5f5f5;
+    }
+
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+</style>
+
+@Html.Label("Instructors", "Instructors", new { @class = "form-control", @style = "color:red" })
+@* <h1>Instructors</h1> *@
+
+@if (Model != null)
+{
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Address</th>
+            <th>Image</th>
+            <th>Department</th>
+            <th>Course</th>
+        </tr>
+
+        @foreach (var instructor in Model)
+        {
+            <tr>
+                <td>@instructor.Id</td>
+                <td>@instructor.Name</td>
+                <td>@instructor.Salary</td>
+                <td>@instructor.Address</td>
+                <td>
+                    <img src="@instructor.ImageUrl" />
+                </td>
+                <td>@instructor.Department?.Name</td>
+                <td>@instructor.Course?.Name</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No instructors available.</p>
+}
+@Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "btn btn-primary" })
+
+@* <a href="/Home/Index">← Back</a> *@
+
+<a asp-action="Index" asp-controller="Home" class="btn btn-primary">← Back</a>
+
