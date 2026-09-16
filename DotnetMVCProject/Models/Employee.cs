@@ -7,9 +7,12 @@ public class Employee
     [Required(ErrorMessage = "Name is required")]
     [MaxLength(50, ErrorMessage = "Name cannot exceed 50 characters")]
     [MinLength(3, ErrorMessage = "Name must be at least 3 characters long")]
+    //we can create our own validation attribute by inheriting from ValidationAttribute
+    [Unique(Message = "Name already exists")]
     public string Name { get; set; } = null!;
     [Required(ErrorMessage = "Salary is required")]
     [Range(1000, 100000, ErrorMessage = "Salary must be between 1000 and 100000")]
+
     public decimal Salary { get; set; }
     public string JopTitle { get; set; } = null!;
     public string? ImageUrl { get; set; }
