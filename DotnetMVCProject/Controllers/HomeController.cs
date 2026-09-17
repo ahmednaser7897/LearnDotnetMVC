@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using DotnetMVCProject.Models;
-using DotnetMVCProject.Models.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetMVCProject.Controllers
@@ -9,7 +8,7 @@ namespace DotnetMVCProject.Controllers
     {
         public IActionResult Index()
         {
-            AppDbContext context = new AppDbContext();
+            //AppDbContext context = new AppDbContext();
             return View();
         }
         public IActionResult Privacy()

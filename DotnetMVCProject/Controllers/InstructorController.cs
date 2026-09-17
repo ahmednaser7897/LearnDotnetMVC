@@ -7,7 +7,11 @@ namespace DotnetMVCProject.Controllers;
 
 public class InstructorController : Controller
 {
-    readonly AppDbContext context = new();
+    readonly AppDbContext context;
+    public InstructorController(AppDbContext context)
+    {
+        this.context = context;
+    }
     [HttpGet]
     public IActionResult Index()
     {

@@ -10,11 +10,17 @@ public class AppDbContext : DbContext
     public DbSet<Course> Courses { get; set; }
     public DbSet<CrsResult> CrsResults { get; set; }
 
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public AppDbContext() : base()
     {
-        optionsBuilder.UseSqlServer(ConnectionString.LoadConnectionString());
     }
+    public AppDbContext(DbContextOptions options) : base(options)
+    {
+    }
+
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //     optionsBuilder.UseSqlServer(ConnectionString.LoadConnectionString());
+    // }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

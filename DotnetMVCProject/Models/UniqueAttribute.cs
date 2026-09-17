@@ -17,21 +17,20 @@ public class UniqueAttribute : ValidationAttribute
     public string? Message { get; set; }
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {
-        if (value == null)
-        {
-            return null;
-        }
-        string name = value.ToString() ?? "";
-        using var context = new AppDbContext();
-        var employeeFromDB = context.Employees.FirstOrDefault(e => e.Name == name);
-        var employeeFromView = (Employee)validationContext.ObjectInstance;
-        if (employeeFromDB != null)
-        {
-            return new ValidationResult(ErrorMessage ?? "Name already exists");
-        }
-        else
-        {
-            return ValidationResult.Success;
-        }
+        // if (value == null)
+        // {
+        //     return null;
+        // }
+        // string name = value.ToString() ?? "";
+        // var employeeFromDB = new EmployeeRepository().GetByName(name);
+        // var employeeFromView = (Employee)validationContext.ObjectInstance;
+        // if (employeeFromDB != null)
+        // {
+        //     return new ValidationResult(ErrorMessage ?? "Name already exists");
+        // }
+        // else
+        // {
+        return ValidationResult.Success;
+        //}
     }
 }

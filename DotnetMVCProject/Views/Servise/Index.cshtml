@@ -1,0 +1,15 @@
+@inject IEmployeeRepository emp
+@inject IDepartmentRepository dep
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Servise - Index</h1>
+
+<h2>EmployeeRepositoryId From controller constructor: @ViewBag.EmployeeRepositoryId</h2>
+<h2>DepartmentRepositoryId From controller constructor: @ViewBag.DepartmentRepositoryId</h2>
+<br><br>
+<h2>EmployeeRepositoryId From view inject: @emp.Id</h2>
+<h2>DepartmentRepositoryId From view inject: @dep.Id</h2>
+
+<p>This is an empty Razor view created from the Empty template.</p>
