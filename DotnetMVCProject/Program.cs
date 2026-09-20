@@ -107,6 +107,30 @@ public static class Program
           name: "default",
           pattern: "{controller=Home}/{action=Index}/{id?}")
           .WithStaticAssets();
+      //==========================================================
+      //URL Routing : is a way to define the URL of a web page
+      //by defult MVC uses this pattern :
+      //http://localhost:5074/{Controller}/{Action}
+      // we can override it by using 2ways:
+      //1- the [Route] attribute [in Controller , Action , Global Route (appsettings.json)]
+      //2- Naming Convention Route(def route with name , pattern , default value) [in the Program.cs]
+      //==========================================================================================
+      //we can add constrains to the route
+      //we can add optional parameters
+
+      app.MapControllerRoute(
+    "Route1",// it's just a name for this route
+    "M1",// the pattern of the url 
+    new { controller = "Route", action = "Methode1" });// the default values for the route
+      app.MapControllerRoute(
+      "Route2",// it's just a name for this route
+      "M2/{Name}/{Age:int:range(10,30)}/{color?}",// the pattern of the url 
+      new { controller = "Route", action = "Methode2", Name = "Unknown", Age = 0 });// the default values for the route
+                                                                                    //we can hide controller name and use the action name
+      app.MapControllerRoute(
+      "Route3",// it's just a name for this route
+      "R/{action}",// the pattern of the url 
+      new { controller = "Route" });// the default values for the route
       app.Run();
 
    }
