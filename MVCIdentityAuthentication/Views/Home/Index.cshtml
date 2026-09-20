@@ -1,0 +1,55 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+@* 
+    The following code will check if the user is authenticated, 
+    if yes then it will display the user name and the user claims,
+    if not then it will display the register and login buttons
+    The User model comes from :
+    ClaimsPrincipal Microsoft.AspNetCore.Mvc.Razor.RazorPageBase.User { get; }
+    we can use the User model to check if its Authenticated and cheack its role
+    and get the claims data about the loged in user 
+*@
+@if (User.Identity!.IsAuthenticated)
+{
+    <a href="/Department/Index" class="btn btn-primary">All Departments</a>
+    <br>
+    <br>
+    <a href="/Employee/Index" class="btn btn-primary">All Employees</a>
+    <br>
+    <br>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-controller="Role" asp-action="AddRole" class="btn btn-primary">Add Role</a>
+        <br>
+        <br>
+    }
+    <form asp-controller="Account" asp-action="Logout" method="post" style="display: inline;">
+        <button type="submit" class="btn btn-primary">Logout</button>
+    </form>
+    <br>
+    <br>
+    @*this will display the user name *@
+    <h3>Welcome @User.Identity!.Name</h3>
+    <h3>Your Address is @User.Claims.FirstOrDefault(c => c.Type == "Address")?.Value</h3>
+    <h3>Your ID is @User.Claims.FirstOrDefault(c => c.Type == @ClaimTypes.NameIdentifier)?.Value</h3>
+    <h3>Your Role is @User.Claims.FirstOrDefault(c => c.Type == @ClaimTypes.Role)?.Value</h3>
+}
+else
+{
+    <a href="/Account/Register" class="btn btn-primary">Register</a>
+    <a href="/Account/Login" class="btn btn-primary">Login</a>
+}
+
+
+<a href="/Account/TestAuth" class="btn btn-primary">Test Auth</a>
+
+
+
+

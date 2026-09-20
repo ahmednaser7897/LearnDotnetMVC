@@ -1,0 +1,35 @@
+@model List<Department>
+@{
+    ViewData["Title"] = "Departments";
+}
+<h1>Departments</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>ManagerName</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var dept in Model)
+            {
+                <tr key="dept.id">
+                    <td>@dept.Id</td>
+                    <td>@dept.Name</td>
+                    <td>@dept.ManagerName</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <li>No departments available.</li>
+        }
+
+
+    </tbody>
+    <a href="/Department/Add" class="btn btn-primary">Add New Department</a>
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+        <a href="/Home/Index" class="btn btn-primary">Back To Home</a>
