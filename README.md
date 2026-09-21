@@ -1,12 +1,6 @@
-# Learn C#.NET
+# Learn ASP.NET Core MVC
 
-## Mastering C#.NET -> Metigator
+## ASP.NET Core MVC -> ITI
 
-### https://www.youtube.com/playlist?list=PL4n1Qos4Tb6SWPbJNpiznp-Ok4A8J\_23l
-
-## C#.NET -> ITI
-
-### https://www.youtube.com/playlist?list=PLNFDrRZdysFxcO03JtQeIMed4GHFc2YlT
-
-## 
+### https://www.youtube.com/playlist?list=PLNFDrRZdysFzmzqno6G1EoxhIKo5sKiwL
 
