@@ -8,6 +8,10 @@ ASP.NET MVC Identity Authentication Steps
     we added it even we will not use it
 3. Make AppDbContext inherit from IdentityDbContext<ApplicationUser> instead of DbContext:
     public class AppDbContext : IdentityDbContext<ApplicationUser> {......}
+4. Add in the main function the identity services:
+    builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
+    
 4. Add Migrations to update the database tables for identity:
     cd .\MVCIdentityAuthentication
     dotnet ef migrations add AddIdentity
